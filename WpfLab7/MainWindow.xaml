@@ -1,0 +1,78 @@
+﻿<Window x:Class="WpfLab7.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfLab7"
+        mc:Ignorable="d"
+        Title="Текстовый редактор" Height="450" Width="800" MinHeight="200" MinWidth="500">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:MyCommands.Open" Executed="OpenExecuted"/>
+        <CommandBinding Command="Save" Executed="SaveExecuted"/>
+        <CommandBinding Command="Close" Executed="ExitExecuted"/>
+        <CommandBinding Command="Help" Executed="HelpExecuted"/>
+        <CommandBinding Command="local:MyCommands.Contacts" Executed="ContactsExecuted"/>
+    </Window.CommandBindings>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu >
+            <MenuItem Header="_Файл">
+                <MenuItem Header="_Открыть" Command="local:MyCommands.Open"/>
+                <MenuItem Header="_Сохранить" Command="Save"/>
+                <Separator/>
+                <MenuItem Header="_Выход" Command="Close"/>
+            </MenuItem>
+            <MenuItem Header="_Правка">
+                <MenuItem Header="_Копировать" Command="Copy"/>
+                <MenuItem Header="_Вырезать" Command="Cut"/>
+                <MenuItem Header="_Вставить" Command="Paste"/>
+            </MenuItem>
+            <MenuItem Header="Справка">
+                <MenuItem Command="Help"/>
+                <MenuItem Command="local:MyCommands.Contacts"/>
+            </MenuItem>
+        </Menu>
+        <ToolBarTray Grid.Row="1" VerticalAlignment="Center">
+            <ToolBar>
+                <ComboBox Margin="1" Padding="1" IsEditable="True"  SelectedIndex="0" Width="150" FontFamily="v" SelectionChanged="ComboBox_SelectionChanged">
+                    <TextBlock Text="Arial"/>
+                    <TextBlock Text="Times New Roman"/>
+                    <TextBlock Text="Verdana"/>
+                </ComboBox>
+                <ComboBox Margin="1" Padding="1" SelectedIndex="0" Width="50" SelectionChanged="ComboBox_SelectionChanged_1">
+                    <TextBlock Text="6"/>
+                    <TextBlock Text="8"/>
+                    <TextBlock Text="10"/>
+                    <TextBlock Text="12"/>
+                    <TextBlock Text="14"/>
+                    <TextBlock Text="16"/>
+                </ComboBox>
+            </ToolBar>
+            <ToolBar Margin="1" Padding="1">
+                <Button Click="Button_Click">
+                    <Image Source="/Data/Boldtext_1053.png"/>
+                </Button>
+                <Separator/>
+                <Button Click="Button_Click_1">
+                    <Image Source="/Data/italictext_1051.png"/>
+                </Button>
+                <Separator/>
+                <Button Click="Button_Click_2">
+                    <Image Source="/Data/format-text-underline.png"/>
+                </Button>
+            </ToolBar>
+            <ToolBar Margin="1" Padding="1" VerticalAlignment="Center">
+                <StackPanel>
+                    <RadioButton Content="Чёрный" IsChecked="True" Checked="RadioButton_Checked_1"/>
+                    <RadioButton Content="Красный" Checked="RadioButton_Checked"/>
+                </StackPanel>
+            </ToolBar>
+        </ToolBarTray>
+        <TextBox x:Name="textbox" Grid.Row="2" Margin="4" Padding="5" FontSize="12" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+    </Grid>
+</Window>
