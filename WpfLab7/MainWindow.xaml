@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfLab7"
+        xmlns:dic="clr-namespace:System.Collections;assembly=mscorlib"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Текстовый редактор" Height="450" Width="800" MinHeight="200" MinWidth="500">
     <Window.CommandBindings>
@@ -13,6 +15,18 @@
         <CommandBinding Command="Help" Executed="HelpExecuted"/>
         <CommandBinding Command="local:MyCommands.Contacts" Executed="ContactsExecuted"/>
     </Window.CommandBindings>
+    <Window.Resources>
+        <dic:ArrayList x:Key="FontSize">
+            <sys:String>6</sys:String> 
+            <sys:String>7</sys:String> 
+            <sys:String>8</sys:String> 
+            <sys:String>10</sys:String> 
+            <sys:String>12</sys:String> 
+            <sys:String>14</sys:String> 
+            <sys:String>16</sys:String> 
+            <sys:String>20</sys:String> 
+        </dic:ArrayList>
+    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -39,19 +53,19 @@
         </Menu>
         <ToolBarTray Grid.Row="1" VerticalAlignment="Center">
             <ToolBar>
-                <ComboBox Margin="1" Padding="1" IsEditable="True"  SelectedIndex="0" Width="150" FontFamily="v" SelectionChanged="ComboBox_SelectionChanged">
-                    <TextBlock Text="Arial"/>
-                    <TextBlock Text="Times New Roman"/>
-                    <TextBlock Text="Verdana"/>
-                </ComboBox>
-                <ComboBox Margin="1" Padding="1" SelectedIndex="0" Width="50" SelectionChanged="ComboBox_SelectionChanged_1">
-                    <TextBlock Text="6"/>
+                <ComboBox Margin="1" Padding="1" IsEditable="True"  SelectedIndex="0" Width="150" FontFamily="v" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{StaticResource Fonts}"/>
+                <!--<TextBlock Text="Arial"/>
+                <TextBlock Text="Times New Roman"/>
+                <TextBlock Text="Verdana"/>-->
+
+                <ComboBox Margin="1" Padding="1" SelectedIndex="0" Width="50" SelectionChanged="ComboBox_SelectionChanged_1" ItemsSource="{StaticResource FontSize}"/>
+                <!--<TextBlock Text="6"/>
                     <TextBlock Text="8"/>
                     <TextBlock Text="10"/>
                     <TextBlock Text="12"/>
                     <TextBlock Text="14"/>
-                    <TextBlock Text="16"/>
-                </ComboBox>
+                    <TextBlock Text="16"/>-->
+
             </ToolBar>
             <ToolBar Margin="1" Padding="1">
                 <Button Click="Button_Click">
