@@ -53,18 +53,21 @@
         </Menu>
         <ToolBarTray Grid.Row="1" VerticalAlignment="Center">
             <ToolBar>
-                <ComboBox Margin="1" Padding="1" IsEditable="True"  SelectedIndex="0" Width="150" FontFamily="v" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{StaticResource Fonts}"/>
-                <!--<TextBlock Text="Arial"/>
-                <TextBlock Text="Times New Roman"/>
-                <TextBlock Text="Verdana"/>-->
+                <ComboBox Margin="1" 
+                          Padding="1" 
+                          IsEditable="True"  
+                          SelectedIndex="0" 
+                          Width="150" 
+                          FontFamily="v" 
+                          x:Name="ComboBoxFontStyle"
+                          ItemsSource="{StaticResource Fonts}"/>
 
-                <ComboBox Margin="1" Padding="1" SelectedIndex="0" Width="50" SelectionChanged="ComboBox_SelectionChanged_1" ItemsSource="{StaticResource FontSize}"/>
-                <!--<TextBlock Text="6"/>
-                    <TextBlock Text="8"/>
-                    <TextBlock Text="10"/>
-                    <TextBlock Text="12"/>
-                    <TextBlock Text="14"/>
-                    <TextBlock Text="16"/>-->
+                <ComboBox Margin="1" 
+                          Padding="1" 
+                          SelectedIndex="0" 
+                          Width="50" 
+                          x:Name="ComboBoxFontSize" 
+                          ItemsSource="{StaticResource FontSize}"/>
 
             </ToolBar>
             <ToolBar Margin="1" Padding="1">
@@ -83,10 +86,17 @@
             <ToolBar Margin="1" Padding="1" VerticalAlignment="Center">
                 <StackPanel>
                     <RadioButton Content="Чёрный" IsChecked="True" Checked="RadioButton_Checked_1"/>
-                    <RadioButton Content="Красный" Checked="RadioButton_Checked"/>
+                    <RadioButton Content="Красный" Checked="RadioButton_Checked" Foreground="Red"/>
                 </StackPanel>
             </ToolBar>
         </ToolBarTray>
-        <TextBox x:Name="textbox" Grid.Row="2" Margin="4" Padding="5" FontSize="12" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+        <TextBox x:Name="textbox" 
+                 Grid.Row="2" 
+                 Margin="4" 
+                 Padding="5" 
+                 FontSize="{Binding ElementName=ComboBoxFontSize, Path=Text}" 
+                 FontFamily="{Binding ElementName=ComboBoxFontStyle, Path=Text}"
+                 TextWrapping="Wrap" 
+                 VerticalScrollBarVisibility="Auto"/>
     </Grid>
 </Window>
