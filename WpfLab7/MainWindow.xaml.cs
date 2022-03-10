@@ -128,7 +128,15 @@ namespace WpfLab7
 
         private void ContactsExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("Домашняя страницы");
+            MessageBox.Show("Домашняя страница");
+        }
+
+        private void theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Application.Current.Resources.MergedDictionaries.Clear();
+            Uri theme = new Uri(this.theme.SelectedIndex==0? "Light.xaml":"Dark.xaml", UriKind.Relative);
+            ResourceDictionary themeDictionary = Application.LoadComponent(theme) as ResourceDictionary;
+            Application.Current.Resources.MergedDictionaries.Add(themeDictionary);
         }
     }
 }

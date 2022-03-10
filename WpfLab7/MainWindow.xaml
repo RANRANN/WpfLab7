@@ -7,7 +7,7 @@
         xmlns:dic="clr-namespace:System.Collections;assembly=mscorlib"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Текстовый редактор" Height="450" Width="800" MinHeight="200" MinWidth="500">
+        Title="Текстовый редактор" Height="450" Width="800" MinHeight="200" MinWidth="500" BorderThickness="1">
     <Window.CommandBindings>
         <CommandBinding Command="local:MyCommands.Open" Executed="OpenExecuted"/>
         <CommandBinding Command="Save" Executed="SaveExecuted"/>
@@ -34,8 +34,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu >
-            <MenuItem Header="_Файл">
+        <Menu BorderThickness="0">
+            <MenuItem Header="_Файл" BorderThickness="0">
                 <MenuItem Header="_Открыть" Command="local:MyCommands.Open"/>
                 <MenuItem Header="_Сохранить" Command="Save"/>
                 <Separator/>
@@ -83,10 +83,15 @@
             <ToolBar Margin="1" Padding="1" VerticalAlignment="Center">
                 <StackPanel>
                     <RadioButton Content="Чёрный" IsChecked="True" Checked="RadioButton_Checked_1"/>
-                    <RadioButton Content="Красный" Checked="RadioButton_Checked"/>
+                    <RadioButton Content="Красный" Checked="RadioButton_Checked" Foreground="Red" />
                 </StackPanel>
+                <Separator/>
+                <ComboBox Name="theme" Width="100" Margin="5" SelectedIndex="0" SelectionChanged="theme_SelectionChanged">
+                    <TextBlock Text="Светлая"/>
+                    <TextBlock Text="Тёмная"/>
+                </ComboBox>
             </ToolBar>
         </ToolBarTray>
-        <TextBox x:Name="textbox" Grid.Row="2" Margin="4" Padding="5" FontSize="12" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+        <TextBox x:Name="textbox" Grid.Row="2" Margin="1" Padding="1" FontSize="12" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
     </Grid>
 </Window>
